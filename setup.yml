@@ -1,4 +1,3 @@
-# setup.yml (Kubernetes Deployment + Service)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +14,8 @@ spec:
     spec:
       containers:
       - name: webapplication
-        image: hansikagollen/webapplication:latest
+        image: hansikagollen/web-application:1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
 ---
