@@ -1,0 +1,16 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker build -t registry.example.com/hansikagollen/web-application:latest .
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploy step - here you would push or deploy image"
