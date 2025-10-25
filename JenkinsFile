@@ -1,0 +1,7 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Build Image') { steps { sh 'docker build -t hansikagollen/webapp:${BUILD_NUMBER} .' } }
+  }
+}

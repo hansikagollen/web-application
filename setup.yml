@@ -1,0 +1,33 @@
+# setup.yml (Kubernetes Deployment + Service)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapplication-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapplication
+  template:
+    metadata:
+      labels:
+        app: webapplication
+    spec:
+      containers:
+      - name: webapplication
+        image: hansikagollen/webapplication:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  selector:
+    app: webapplication
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort
